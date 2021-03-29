@@ -5,6 +5,7 @@ import (
 	"os"
 	"firmanjs/example-gin/routes"
 	"github.com/joho/godotenv"
+    "github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	r := routers.SetupRouter()
 
 	port := "8080"
-
+    gin.SetMode("debug")
 	if len(os.Args) > 1 {
 		reqPort := os.Args[1]
 		if reqPort != "" {
