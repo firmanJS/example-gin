@@ -1,4 +1,8 @@
-run: go run main.go
+run:
+	go run -race main.go
+
+clean:
+	go clean
 
 build:
 	@GOOS=linux GOARCH=amd64
