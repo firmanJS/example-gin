@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	service "go-gin_mongodb/services/v1"
+	service "firmanjs/example-gin/services/v1"
 
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -34,24 +34,18 @@ func Connect() {
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	err = client.Connect(ctx)
+	var errs = client.Connect(ctx)
 
 	defer cancel()
 
 	err = client.Ping(context.Background(), readpref.Primary())
 
 	if err != nil {
-		log.Fatal("cant connect to db", err)
+		log.Fatal("cant connect to db", errs)
 	} else {
 		log.Println("Connected")
 	}
 
 	db := client.Database(dbName)
-	service.UserCollections(db)
-	service.ProductsCollections(db)
-	service.CategoriesCollections(db)
-	service.CustomersCollections(db)
-	service.RolesCollections(db)
-	service.TransactionsCollections(db)
-	return
+	service.UsersCollections(db)
 }
