@@ -13,8 +13,9 @@ func SetupRouter() *gin.Engine {
 	db.Connect()
 
 	//routing endpoint
-
 	routes := gin.Default()
+
+	routeUser(routes)
 
 	routes.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Page not found"})
