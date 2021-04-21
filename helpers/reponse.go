@@ -1,8 +1,7 @@
 package helpers
 
 import (
-	"encoding/json"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 //ResponseData structure
@@ -17,16 +16,10 @@ func Message(status int, message string) map[string]interface{} {
 }
 
 //Respond return basic response structure
-func Respond(w http.ResponseWriter, data map[string]interface{}) {
-	w.Header().Add("Content-Type", "application/json")
-
-	// w.WriteHeader(data["status"].(int))
-
-	if data["status"] == http.StatusInternalServerError {
-		w.WriteHeader(data["status"].(int))
-		json.NewEncoder(w).Encode(data)
-	} else {
-		json.NewEncoder(w).Encode(data)
-	}
-
+func Respond(c *gin.Context, code int, status string, message string, data interface{}) {
+	c.JSON(code, gin.H{
+		"data":    data,
+		"status":  status,
+		"message": message,
+	})
 }

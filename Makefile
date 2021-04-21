@@ -1,5 +1,8 @@
 run:
 	go run -race main.go
+	
+watch:
+	nodemon --exec go run main.go --signal SIGTERM
 
 clean:
 	go clean

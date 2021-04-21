@@ -10,7 +10,8 @@ func routeUser(routes *gin.Engine) {
 
 	user := routes.Group("/api/v1/user")
 
-	user.POST("/login", api.LoginUser)
-	user.POST("/", api.CreateUser)
-	user.GET("/all", api.GetAllUsers)
+	user.POST("/", api.CreateUsers)
+	user.GET("/", api.GetAllUsers)
+	user.GET("/:id", api.GetUsers)
+	user.DELETE("/:id", api.DeleteUsers)
 }
