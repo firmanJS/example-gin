@@ -1,6 +1,8 @@
 package helpers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,5 +23,21 @@ func Respond(c *gin.Context, code int, status string, message string, data inter
 		"data":    data,
 		"status":  status,
 		"message": message,
+	})
+}
+
+func RespondOk(c *gin.Context, message string, data interface{}) {
+	c.JSON(http.StatusOK, gin.H{
+		"data":    data,
+		"status":  "Success",
+		"message": message,
+	})
+}
+
+func RespondCreated(c *gin.Context, data interface{}) {
+	c.JSON(http.StatusCreated, gin.H{
+		"data":    data,
+		"status":  "Created",
+		"message": "Data successfully created",
 	})
 }
