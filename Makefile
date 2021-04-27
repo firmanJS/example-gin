@@ -1,4 +1,11 @@
-run: go run main.go
+run:
+	go run -race main.go
+	
+watch:
+	nodemon --exec go run main.go --signal SIGTERM
+
+clean:
+	go clean
 
 build:
 	@GOOS=linux GOARCH=amd64
