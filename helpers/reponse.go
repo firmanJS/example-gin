@@ -34,6 +34,30 @@ func RespondOk(c *gin.Context, message string, data interface{}) {
 	})
 }
 
+func RespondError(c *gin.Context, message string, data interface{}) {
+	c.JSON(http.StatusInternalServerError, gin.H{
+		"data":    nil,
+		"status":  "Error",
+		"message": message,
+	})
+}
+
+func RespondNotFOund(c *gin.Context, message string, data interface{}) {
+	c.JSON(http.StatusNotFound, gin.H{
+		"data":    nil,
+		"status":  "Not found",
+		"message": "Data not found",
+	})
+}
+
+func RespondBad(c *gin.Context, message string, data interface{}) {
+	c.JSON(http.StatusBadRequest, gin.H{
+		"data":    nil,
+		"status":  "Error",
+		"message": message,
+	})
+}
+
 func RespondCreated(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusCreated, gin.H{
 		"data":    data,

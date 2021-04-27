@@ -51,4 +51,3 @@ func DeleteUsers(c *gin.Context) {
 
 	helpers.Respond(c, code, status, message, data)
 }
-

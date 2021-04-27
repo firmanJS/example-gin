@@ -159,8 +159,8 @@ func DeleteByID(id string) (int, string, string, interface{}) {
 	}
 
 	if result.MatchedCount == 0 {
-        return http.StatusNotFound, "Error","Not found Document", nil
+		return http.StatusNotFound, "Error", "Not found Document", nil
 	}
 
-    return http.StatusNotFound, "Success","Delete Uses Succesfully", result
+	return http.StatusNotFound, "Success", "Delete Uses Succesfully", result
 }
